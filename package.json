@@ -4,15 +4,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "description": "k-means clustering in TypeScript",
-  "keywords": [
-    "kmeans",
-    "k-means",
-    "cluster",
-    "clustering",
-    "typescript",
-    "kmeans++",
-    "k-means++"
-  ],
+  "keywords": ["kmeans", "k-means", "cluster", "clustering", "typescript", "kmeans++", "k-means++"],
+  "type": "module",
   "scripts": {
     "compile": "tsc -d",
     "compile:examples": "webpack --config example/webpack.config.ts",
@@ -45,24 +38,12 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.0.0"
   },
-  "files": [
-    "src/",
-    "dist/"
-  ],
+  "files": ["src/", "dist/"],
   "nyc": {
-    "extension": [
-      ".ts",
-      ".tsx"
-    ],
-    "exclude": [
-      "**/*.d.ts"
-    ],
-    "include": [
-      "src/**"
-    ],
-    "reporter": [
-      "text-summary"
-    ],
+    "extension": [".ts", ".tsx"],
+    "exclude": ["**/*.d.ts"],
+    "include": ["src/**"],
+    "reporter": ["text-summary"],
     "report-dir": "./.coverage",
     "all": true
   },

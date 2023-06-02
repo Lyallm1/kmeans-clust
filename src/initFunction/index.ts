@@ -1,2 +1,2 @@
-export { kmeansPlusPlusInit } from "./kmeansPlusPlusInit";
-export { randomInit } from "./randomInit";
+export { kmeansPlusPlusInit } from "./kmeansPlusPlusInit.js";
+export { randomInit } from "./randomInit.js";

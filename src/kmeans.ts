@@ -1,43 +1,27 @@
-import {assembleClusters} from "./assembleClusters";
-import { arePointsEqual, Point } from "./point";
-import { Cluster, KMeansOptions } from "./types";
+import { Cluster, KMeansOptions } from "./types.js";
+import { Point, arePointsEqual } from "./point.js";
+
+import { assembleClusters } from "./assembleClusters.js";
 
 export function optimizeCentroids(centroids: Point[], points: Point[], options: KMeansOptions): Cluster[] {
-    let clusters = [];
-    let anyCentroidChanged = false;
-
+    let clusters: Cluster[] = [], anyCentroidChanged = false;
     do {
         clusters = assembleClusters(centroids, points, options.distanceFunction);
-        if(options.onIteration) {
-            options.onIteration(clusters);
-        }
-        
+        if (options.onIteration) options.onIteration(clusters);
         anyCentroidChanged = false;
         centroids = [];
-        for(const cluster of clusters) {
+        for (const cluster of clusters) {
             const centroid = clusterCentroid(cluster);
             centroids.push(centroid);
-            if(!arePointsEqual(centroid, cluster.centroid)) {
-                anyCentroidChanged = true;
-            }
+            if (!arePointsEqual(centroid, cluster.centroid)) anyCentroidChanged = true;
         }
-    } while( anyCentroidChanged );
+    } while (anyCentroidChanged);
     return clusters;
 }
-
 function clusterCentroid(cluster: Cluster): Point {
-    if(0 === cluster.points.length) {
-        return cluster.centroid;
-    }
+    if (cluster.points.length === 0) return cluster.centroid;
     const centroid = cluster.points[0].concat();
-    
-    for(let i = 1; i < cluster.points.length; i++) {
-        for(let d = 0; d < centroid.length; d++) {
-            centroid[d] += cluster.points[i][d];
-        }
-    }
-    for(let d = 0; d < centroid.length; d++) {
-        centroid[d] /= cluster.points.length;
-    }
+    for (let i = 1; i < cluster.points.length; i++) centroid.forEach((c, d) => c += cluster.points[i][d]);
+    centroid.forEach((c, d) => c /= cluster.points.length);
     return centroid;
 }

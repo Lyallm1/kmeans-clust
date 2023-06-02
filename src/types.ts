@@ -1,11 +1,10 @@
-import { Point } from "./point";
+import { Point } from "./point.js";
 
 export interface Cluster {
     centroid: Point;
     points: Point[];
     error: number;
 }
-
 export interface KMeansOptions {
     distanceFunction: DistanceFunction;
     initFunction: InitFunction;

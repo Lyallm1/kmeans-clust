@@ -1,13 +1,6 @@
-export function unique<T>(arr: T[], cmp: AreEqual<T>): T[] {
-    return arr.reduce((prev: T[], value: T) => {
-        if(-1 === prev.findIndex((p: T) => {
-            return cmp(p, value);
-        })) {
-            prev.push(value);
-        }
-
+export function unique<T>(arr: T[], cmp: <T>(a: T, b: T) => boolean): T[] {
+    return arr.reduce((prev, value) => {
+        if (-1 === prev.findIndex(p => cmp(p, value))) prev.push(value);
         return prev;
-    }, []);
+    }, [] as T[]);
 }
-
-type AreEqual<T> = (a: T, b: T) => boolean;

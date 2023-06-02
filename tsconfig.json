@@ -1,23 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "NodeNext",
     "outDir": "dist",
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": true,
     "noLib": false,
     "preserveConstEnums": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "suppressImplicitAnyIndexErrors": false,
     "experimentalDecorators": true,
-    "lib": [
-      "DOM",
-      "ES6",
-      "DOM.Iterable",
-      "ScriptHost"
-    ]
-  },
-  "files": [
-    "index.ts"
-  ]
+    "lib": ["DOM", "ES6", "DOM.Iterable", "ScriptHost"]
+  }, "files": ["index.ts"]
 }
