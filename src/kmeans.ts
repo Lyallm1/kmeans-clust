@@ -22,6 +22,6 @@ function clusterCentroid(cluster: Cluster): Point {
     if (cluster.points.length === 0) return cluster.centroid;
     const centroid = cluster.points[0].concat();
     for (let i = 1; i < cluster.points.length; i++) centroid.forEach((c, d) => c += cluster.points[i][d]);
-    centroid.forEach((c, d) => c /= cluster.points.length);
+    centroid.forEach(c => c /= cluster.points.length);
     return centroid;
 }
